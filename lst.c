@@ -1,61 +1,36 @@
-#include "includes.h"
+function declare_lst_new(nbr)
+    declar *lst_ret
 
-int cmpfunc (const void * a, const void * b) {
-   return ( *(int*)a - *(int*)b );
-}
+    lst_ret = (type_lst *)malloc(sizeof(lst_ret))
+    lst_ret->nbr = nbr
+    lst_ret->next = NULL
+    ret lst_ret
 
+function looping(*lst, *lst_new)
+    declar *lst_tmp
 
+    lst_tmp = lst
+    loop lst_tmp->next exist
+        lst_tmp = lst_tmp->next
+    lst_tmp->next = lst_new
 
-/*
-*type_lst fonction(*type_lst, *type_lst)
-    lst->nb=1
-    lst->next=NULL
-    lst2->nb = 2
-    lst->next=Null
-    lst->next=lst2
-*/
+function main
+    declar *lst
+    declar *lst_tmp
 
-int main(void){
-    int array_int[5] = { 5, 6, 4, 2, 1};
-    int i = 0;
-    type_lst *lst;
-    type_lst *lst2;
-    type_lst *lst3;
-    type_lst *lst4;
-    type_lst *lst5;
+    array = {...}
+    qsort
+    array => array_sort
 
+    lst = (type_lst *)malloc(sizeof(lst))
+    lst->nbr = array[0]
+    lst->next = NULL
 
-
-    lst = (type_lst *)malloc(sizeof(lst));
-    lst2 = (type_lst *)malloc(sizeof(lst2));
-    lst3 = (type_lst *)malloc(sizeof(lst3));
-    lst4 = (type_lst *)malloc(sizeof(lst4));
-    lst5 = (type_lst *)malloc(sizeof(lst5));
-
-
-    while (i < 5){
-        qsort( array_int,5, sizeof(int),cmpfunc);
-        printf("%i\n",array_int[i]);
-        i ++;
-    }
-
-    lst->nbr = array_int[0];
-    lst2->nbr = array_int[1];
-    lst3->nbr = array_int[2];
-    lst4->nbr = array_int[3];
-    lst5->nbr = array_int[4];
-
-
-    lst->next = lst2;
-    lst2->next = lst3;
-    lst3->next = lst4;
-    lst4->next = lst5;
-    lst5->next = NULL;
+    loop sur array i de 1->max_len
+        lst_new = declare_lst_new(array[i])
+        looping(lst, lst_new)
     
-
-    while (lst) {
-        printf("le nbr = %i\n", lst->nbr);
-        lst = lst->next;
-    }
-
-}
+    loop lst
+        lst_tmp = lst->next
+        free(lst)
+        lst = lst_tmp
