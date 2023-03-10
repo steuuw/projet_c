@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
-void gd_putnbr(int nb){
-    write(1,&nb,1);
-}
-
 void gd_putchar(char c){
     write(1, &c, 1);
 }
